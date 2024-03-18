@@ -21,7 +21,6 @@ const Cryptocurrencies = ({ simplified }) => {
 
   if (isFetching) return "laoding...";
 
-  console.table(cryptos);
   return (
     <>
       {!simplified && (
