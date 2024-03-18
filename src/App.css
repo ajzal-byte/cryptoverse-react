@@ -352,10 +352,32 @@ width: 70%;
 .exchange-image{
   margin: 0px 10px !important;
 }
-.search-crypto{
+
+.search-crypto {
   margin: 20px auto 30px auto;
   width: 250px;
+  display: flex; /* Makes the input field and any potential icon or label fit horizontally */
+  align-items: center; /* Aligns vertically the input field with other elements inside the div */
+  margin-bottom: 1rem; /* Adds some space below the search bar */
 }
+
+.search-crypto input {
+  flex: 1; /* Makes the input field fill the remaining space within the div */
+  padding: 1rem; /* Adds padding around the text inside the input field */
+  border: 1px solid #ccc; /* Adds a thin border */
+  border-radius: 4px; /* Adds rounded corners to the input field */
+  font-size: 1rem; /* Sets the font size of the text */
+  outline: none; /* Removes the default outline around the input field on focus */
+}
+
+.search-crypto input::placeholder { /* Styles the placeholder text */
+  color: #999; /* Sets the color of the placeholder text */
+}
+
+
+
+
+
 .crypto-card-container{
   min-height: 65vh !important;
 }
