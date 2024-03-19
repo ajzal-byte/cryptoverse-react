@@ -1,5 +1,6 @@
 import { Select, Typography, Row, Col, Avatar, Card } from "antd";
 import moment from "moment";
+import Loader from "./Loader";
 
 import {
   useGetCryptoNewsQuery,
@@ -27,7 +28,8 @@ const News = ({ simplified }) => {
   }, [newsInput]);
   
 
-  if (isFetching) return "loading..";
+  if (isFetching) return <Loader/>;
+
   return (
     <Row gutter={[24, 24]}>
       {!simplified && (

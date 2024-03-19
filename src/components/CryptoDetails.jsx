@@ -14,6 +14,7 @@ import {
   ThunderboltOutlined,
 } from "@ant-design/icons";
 import LineChart from "./LineChart";
+import Loader from "./Loader";
 import { useState } from "react";
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from "../services/cryptoApi";
 
@@ -101,7 +102,7 @@ const CryptoDetails = () => {
     },
   ];
 
-  if (isFetching) return "loading";
+  if (isFetching) return <Loader/>;
 
   return (
     <Col className="coin-detail-container">
