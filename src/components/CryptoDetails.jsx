@@ -109,7 +109,7 @@ const CryptoDetails = () => {
         <Title
           level={2}
           className="coin-name"
-          style={{ color: `${cryptoDetails?.color}` }}
+          style={{ color: `${cryptoDetails?.color}` || "#0071bd" }}
         >
           {cryptoDetails?.name}
         </Title>
@@ -132,6 +132,7 @@ const CryptoDetails = () => {
         coinHistory={coinHistory}
         currentPrice={millify(cryptoDetails.price)}
         coinName={cryptoDetails.name}
+        coinColor={cryptoDetails?.color}
       />
       <Col
         className="stats-container"

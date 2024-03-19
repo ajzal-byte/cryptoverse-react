@@ -11,7 +11,7 @@ import { useEffect, useRef } from "react";
 
 const { Title } = Typography;
 
-const LineChart = ({ coinHistory, currentPrice, coinName }) => {
+const LineChart = ({ coinHistory, currentPrice, coinName, coinColor }) => {
   const chartRef = useRef(null);
   Chart.register(CategoryScale, LinearScale, PointElement, LineElement);
   const coinPrice = [];
@@ -41,8 +41,8 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
         label: `Price of ${coinName} in USD`,
         data: coinPrice,
         fill: false,
-        backgroundColor: "#0071bd",
-        borderColor: "#0071bd",
+        backgroundColor: `${coinColor}` || "#0071bd",
+        borderColor: `${coinColor}` || "#0071bd",
       },
     ],
   };
