@@ -13,6 +13,7 @@ import {
   NumberOutlined,
   ThunderboltOutlined,
 } from "@ant-design/icons";
+import LineChart from "./LineChart";
 import { useState } from "react";
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from "../services/cryptoApi";
 
