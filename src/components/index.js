@@ -4,5 +4,6 @@ import Exchanges from "./Exchanges";
 import HomePage from "./HomePage";
 import Navbar from "./Navbar";
 import News from "./News";
+import LineChart from "./LineChart";
 
-export { Cryptocurrencies, CryptoDetails, Exchanges, HomePage, Navbar, News };
+export { Cryptocurrencies, CryptoDetails, Exchanges, HomePage, Navbar, News, LineChart };
