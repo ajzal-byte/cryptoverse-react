@@ -21,11 +21,22 @@ export const cryptoNewsApi = createApi({
     getCryptoNews: builder.query({
       query: (count) => ({
         url: "/crypto",
-        params: { batchSize: String(count) },
+        params: {
+          languages: "en",
+          batchSize: String(count),
+        },
+      }),
+    }),
+    getCryptoSearchNews: builder.query({
+      query: (input) => ({
+        url: "/topic-search",
+        params: {
+          languages: "en",
+          search: String(input),
+        },
       }),
     }),
   }),
 });
 
-
-export const { useGetCryptoNewsQuery } = cryptoNewsApi;
+export const { useGetCryptoNewsQuery, useGetCryptoSearchNewsQuery } = cryptoNewsApi;
