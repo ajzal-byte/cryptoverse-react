@@ -17,18 +17,19 @@ const News = ({ simplified }) => {
   const count = simplified ? 6 : 12;
   const [newsInput, setNewsInput] = useState("");
   const { data } = useGetCryptosQuery(100);
-  const {data: cryptoNews, isFetching} = newsInput ? useGetCryptoSearchNewsQuery(newsInput) : useGetCryptoNewsQuery(count)
+  const { data: cryptoNews, isFetching, refetch } = newsInput
+    ? useGetCryptoSearchNewsQuery(newsInput)
+    : useGetCryptoNewsQuery(count);
   console.log(cryptoNews);
 
   useEffect(() => {
     // Execute the search query if newsInput has a value
     if (newsInput) {
-      useGetCryptoSearchNewsQuery(newsInput);
+      refetch(); // Refetch the data with the updated search input
     }
-  }, [newsInput]);
-  
+  }, [newsInput, refetch]);
 
-  if (isFetching) return <Loader/>;
+  if (isFetching) return <Loader />;
 
   return (
     <Row gutter={[24, 24]}>
@@ -39,12 +40,17 @@ const News = ({ simplified }) => {
             className="select-news"
             placeholder="Select a Crypto"
             optionFilterProp="children"
+            value={newsInput ? newsInput : "Select a Crypto"}
             onChange={(value) => setNewsInput(value)}
             filterOption={(input, option) =>
               option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
           >
-            {data?.data?.coins.map((coin) => <Option value={coin.name}>{coin.name}</Option>)}
+            {data?.data?.coins.map((coin) => (
+              <Option key={coin.uuid} value={coin.name}>
+                {coin.name}
+              </Option>
+            ))}
           </Select>
         </Col>
       )}
@@ -83,25 +89,3 @@ const News = ({ simplified }) => {
 };
 
 export default News;
-
-// const obj = {
-//   "Title": "44 West Mining Announces Expansion of its Kitty Site and Deployment of 575 New Bitcoin Miners",
-//   "Source": "prnewswire.com",
-//   "Url": "https://www.prnewswire.com/news-releases/44-west-mining-announces-expansion-of-its-kitty-site-and-deployment-of-575-new-bitcoin-miners-302090998.html",
-//   "PublishedOn": "2024-03-18T14:00:00.000Z",
-//   "Description": "/PRNewswire/ -- 44 West Mining, LLC (\"44 West\" or the \"Company\"), Wyoming's premier immersion-cooled Bitcoin (BTC) mining company, today announced the...",
-//   "Language": "en",
-//   "Image": "https://mma.prnewswire.com/media/2364227/44_West_Mining_Logo.jpg?p=facebook",
-//   "SourceNationality": "us",
-//   "TitleSentiment": {
-//       "sentiment": "positive",
-//       "score": 0.87
-//   },
-//   "Summary": "Following this deployment, approximately 5MW of 20MW total capacity is now operational at 44 West's Kitty site. Jamie Terranova, President & CEO of 44 West, commented, \"We are pleased to announce that we have begun the expansion of our Kitty site in Gillette.",
-//   "Countries": [
-//       "us"
-//   ],
-//   "CryptoCurrencies": [
-//       "Bitcoin"
-//   ]
-// }
